@@ -1,0 +1,25 @@
+.sidebar{
+    width: 20vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-title{
+    font-family: 'Playfair Display', serif;
+}
+
+.data-list {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+.data-item{
+    cursor: pointer;
+}
