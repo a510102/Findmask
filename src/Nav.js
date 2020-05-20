@@ -1,24 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Listdats from './Listdata';
 import Pages from './Pages';
 import { area_data, citys } from './taiwan'
 import './nav.css'
 
-function Nav({ cityF, setCityF, setAreaF, areaF, setKeyWord, sliceData, filterDatas, setPageD, pageD, setId }) {
+function Nav({
+    cityF,
+    areaF,
+    setKeyWord,
+    sliceData,
+    filterDatas,
+    setPageD,
+    pageD,
+    setId,
+    keyWord,
+    onhandleKeywordChange,
+    onhandleCountyChange,
+    onhandleTownChange }) {
+    const [isShow, setIsShow] = useState(false);
+    let sidebarClass = "sidebar";
+    let arrowClass = "arrow";
+    if (isShow) {
+        sidebarClass += " show"
+        arrowClass += " rotate"
+    }
     return (
-        <div className="sidebar">
+        <div className={sidebarClass} >
             <nav className="sidebar-navbar" >
-                <h1 className="nav-title">Find Mask</h1>
+                <h1 className="nav-title">Find Mask<span className={arrowClass} onClick={() => setIsShow(!isShow)}>></span></h1>
                 <div className="nav-selection">
                     <select
                         value={cityF ? cityF : ''}
-                        className="selection-county"
-                        onChange={e => {
-                            setCityF(e.target.value);
-                            setAreaF(area_data[e.target.value][0])
-                            setPageD(1)
-                        }}>
-                        <option>--請選擇縣市--</option>
+                        className="selection selection-county"
+                        onChange={e => onhandleCountyChange(e)}>
+                        <option disabled>--請選擇縣市--</option>
                         {
                             citys.data.map((city, i) => {
                                 return <option value={city} key={i} >{city}</option>
@@ -26,13 +41,10 @@ function Nav({ cityF, setCityF, setAreaF, areaF, setKeyWord, sliceData, filterDa
                         }
                     </select>
                     <select
-                        className="selection-area"
-                        onChange={e => {
-                            setAreaF(e.target.value)
-                            setPageD(1)
-                        }}
+                        className="selection selection-area"
+                        onChange={e => onhandleTownChange(e)}
                         value={areaF ? areaF : ''}>
-                        <option>--請選擇地區--</option>
+                        <option disabled>--請選擇地區--</option>
                         {
                             cityF ?
                                 area_data[cityF].map((item, i) => {
@@ -41,26 +53,28 @@ function Nav({ cityF, setCityF, setAreaF, areaF, setKeyWord, sliceData, filterDa
                         }
                     </select>
                 </div>
-                <div className="nav-search">
-                    <label htmlFor="search-mask">關鍵字</label>
+                <form
+                    className="nav-search"
+                    onSubmit={e => onhandleKeywordChange(e)}>
                     <input
                         type="text"
                         name="search-mask"
+                        value={keyWord}
                         className="search-mask"
-                        onChange={e => {
-                            setKeyWord(e.target.value)
-                            setPageD(1)
-                        }} />
-
-                </div>
+                        placeholder="搜尋地址，例如臺中市..."
+                        onChange={e =>
+                            setKeyWord(e.target.value)} />
+                </form>
             </nav>
-            <Listdats datas={sliceData} setId={setId} />
+            <Listdats
+                datas={sliceData}
+                setId={setId} />
             <Pages
                 setId={setId}
                 pageD={pageD}
                 datasL={filterDatas.length}
                 setPageD={setPageD} />
-        </div>
+        </div >
     )
 }
 

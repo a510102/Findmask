@@ -6,6 +6,7 @@ import './App.css'
 
 function App() {
   const [datas, setDatas] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const [cityF, setCityF] = useState('');
   const [areaF, setAreaF] = useState('');
   const [keyWord, setKeyWord] = useState('');
@@ -20,24 +21,50 @@ function App() {
     const response = await fetch(Url);
     const result = await response.json();
     setDatas(result.features);
-    setCityF('臺中市');
-    setAreaF('太平區');
+    const filterdatas = result.features.filter(data =>
+      data.properties.county === "臺中市" && data.properties.town === "太平區"
+    )
+    setCityF("臺中市");
+    setAreaF("太平區");
+    setFilterData(filterdatas);
   };
-  // 假如有選取的縣市或者地區還是關鍵字，資料會更著改變
-  const filterDatas = datas.filter(data => {
-    const { county, town, address } = data.properties;
-    if (areaF && cityF) {
-      return county === cityF && town === areaF
-    } else if (cityF) {
-      return county === cityF
-    } else if (keyWord) {
-      return address.includes(keyWord)
+
+  const onhandleKeywordChange = e => {
+    e.preventDefault();
+    const filterDatas = datas.filter(data => data.properties.address.includes(keyWord));
+    setFilterData(filterDatas);
+    const county = filterDatas[0].properties.county;
+    const town = filterDatas[0].properties.town;
+    setCityF(county);
+    setAreaF(town);
+    setKeyWord('');
+    setPageD(1)
+  }
+
+  const onhandleCountyChange = e => {
+    console.log(e.target.value)
+    if (e.target.value) {
+      setCityF(e.target.value);
+      const filterDatas = datas.filter(data =>
+        data.properties.county === e.target.value
+      );
+      setFilterData(filterDatas);
+      setPageD(1);
+      setAreaF('');
     } else {
       return ''
     }
-  })
+  }
 
-  const sliceData = filterDatas.slice(pageD * 5 - 5, pageD * 5);
+  const onhandleTownChange = e => {
+    setAreaF(e.target.value);
+    const filterdatas = datas.filter(data => data.properties.town === e.target.value);
+    setFilterData(filterdatas);
+    setPageD(1);
+  }
+
+
+  const sliceData = filterData.slice(pageD * 5 - 5, pageD * 5);
   let positionData;
   if (id) {
     positionData = sliceData.find(data => data.properties.id === id)
@@ -53,13 +80,16 @@ function App() {
     <div className="App" >
       <header className="App-header">
         <Nav
+          onhandleCountyChange={onhandleCountyChange}
+          onhandleKeywordChange={onhandleKeywordChange}
+          onhandleTownChange={onhandleTownChange}
           setAreaF={setAreaF}
-          setCityF={setCityF}
           areaF={areaF}
           cityF={cityF}
           setKeyWord={setKeyWord}
+          keyWord={keyWord}
           sliceData={sliceData}
-          filterDatas={filterDatas}
+          filterDatas={filterData}
           pageD={pageD}
           setPageD={setPageD}
           setId={setId} />

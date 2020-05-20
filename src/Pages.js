@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './pages.css'
 
 function Pages({ datasL, setPageD, pageD, setId }) {
+    console.log(datasL)
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState([]);
     useEffect(() => {
@@ -47,7 +48,7 @@ function Pages({ datasL, setPageD, pageD, setId }) {
             })}
             <li>
                 <button
-                    className={pageD === pages.slice(-1)[0] ? "none" : ''}
+                    className={pageD === pages.slice(-1)[0] || datasL < 7 ? "none" : ''}
                     onClick={() => {
                         setId('');
                         setPageD(pageD + 1);

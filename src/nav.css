@@ -1,25 +1,121 @@
 .sidebar{
-    width: 20vw;
+    width: 13.5rem;
     height: 100vh;
-    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: rgb(200, 196, 196);
 }
 
 .nav-title{
     font-family: 'Playfair Display', serif;
 }
 
+.nav-title .arrow{
+    display: none;
+}
+
+
+@media screen and (max-width: 768px){
+    .sidebar{   
+        z-index: 2;
+        width: 50vw;
+        position: absolute;
+        left: 25%;
+        top: 85%;
+        border-top-right-radius:2.5rem ;
+        border-top-left-radius: 2.5rem;
+        transition: all 0.6s ease;
+    }
+    .sidebar.show{
+        top: 0;
+    }
+    .nav-title{
+        display: flex;
+        justify-content: space-between;
+    }
+    .nav-title .arrow{
+        display: block;
+        padding: 0 0.5rem;
+        border-radius: 1rem;
+        transform: rotate(-90deg);
+        transition: all 0.6s ease;
+    }
+    .nav-title .arrow:hover{
+        background: #fff;
+    }
+    .nav-title .arrow.rotate{
+        transform: rotate(90deg);
+    }
+
+}
+@media screen and (max-width: 500px){
+    .sidebar{
+        width: 70vw;
+        left: 15%;
+    }
+}
+
+
+.nav-selection{
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+.selection{
+    width: 50%;
+    border: none;
+}
+.nav-search{
+    width: 100%;
+}
+.search-mask{
+    width: 100%;
+    padding: 0.3rem;
+}
 .data-list {
     height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.3rem;
     font-size: 0.8rem;
 }
 
+
 .data-item{
     cursor: pointer;
+    background: #67ADFF;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-weight: 200;
+}
+@media screen and (max-height:800px) {
+    .data-list{
+        height: 75%;
+        font-size: 0.7rem;
+    }
+    .data-item{
+        padding: 0.2rem;
+    }
+}
+
+.data-item a{
+    color: #000;
+}
+
+.data-item a:hover{
+    color: aliceblue;
+}
+
+.data-item:hover{
+    background: rgb(207, 113, 231);
+    color: aliceblue;
+}
+
+.danger{
+    background: #FF8782;
+}
+
+.less{
+    background: rgb(190, 250, 188);
 }
