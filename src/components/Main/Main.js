@@ -1,8 +1,8 @@
 import React from 'react'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import { Icon } from 'leaflet';
-import havemask from './icon/havemask.svg'
-import nomask from './icon/nomask.svg'
+import havemask from '../../icon/havemask.svg';
+import nomask from '../../icon/nomask.svg';
 import "./main.css"
 
 const haveMask = new Icon({

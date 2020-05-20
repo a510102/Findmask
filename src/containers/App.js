@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Nav from "./Nav";
-import Main from "./Main";
+import Nav from "../components/Nav/Nav";
+import Main from "../components/Main/Main";
 import './App.css'
 
 

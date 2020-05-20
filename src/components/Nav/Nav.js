@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Listdats from './Listdata';
-import Pages from './Pages';
-import { area_data, citys } from './taiwan'
+import Listdats from '../Listdata';
+import Pages from '../Pages/Pages';
+import { area_data, citys } from '../../taiwan'
 import './nav.css'
 
 function Nav({
