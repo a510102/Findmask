@@ -44,7 +44,6 @@ function App() {
   }
   //縣市篩選
   const onhandleCountyChange = e => {
-    console.log(e.target.value)
     if (e.target.value) {
       setCityF(e.target.value);
       const filterDatas = datas.filter(data =>

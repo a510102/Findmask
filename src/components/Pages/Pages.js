@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './pages.css'
 
 function Pages({ datasL, setPageD, pageD, setId }) {
-    console.log(datasL)
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState([]);
     useEffect(() => {

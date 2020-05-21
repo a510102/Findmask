@@ -8,7 +8,7 @@ export const useFetch = url => {
             .then(response => response.json())
             .then(result => setState({ data: result, isloading: false }))
             .catch(error => console.log(error))
-    }, [url])
+    }, [url, setState])
 
     return state
 }
