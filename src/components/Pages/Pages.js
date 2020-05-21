@@ -6,19 +6,20 @@ function Pages({ datasL, setPageD, pageD, setId }) {
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState([]);
     useEffect(() => {
-        counterPages(datasL);
-    }, [datasL])
+        const counterPages = L => {
+            let num = L / 5;
+            const pages = [];
+            num = Math.ceil(num);
+            for (let i = 1; i < num; i++) {
+                pages.push(i)
+            }
+            setPages(pages);
+            setPage(pageD);
+        };
+        counterPages(datasL)
+    }, [datasL, setPages, setPage, pageD])
 
-    const counterPages = L => {
-        let num = L / 5;
-        const pages = [];
-        num = Math.ceil(num);
-        for (let i = 1; i < num; i++) {
-            pages.push(i)
-        }
-        setPages(pages);
-        setPage(pageD);
-    };
+
 
     const filterpages = pages.slice(page * 4 - 4, page * 4);
     return (

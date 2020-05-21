@@ -13,22 +13,24 @@ function App() {
   const [pageD, setPageD] = useState(1);
   const [id, setId] = useState('');
   useEffect(() => {
+    // 連接API取得藥局口罩數量並取預設定點
+    const fetchDatas = async () => {
+      const Url = 'https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json';
+      const response = await fetch(Url);
+      const result = await response.json();
+      setDatas(result.features);
+      const filterdatas = result.features.filter(data =>
+        data.properties.county === "臺中市" && data.properties.town === "太平區"
+      )
+      setCityF("臺中市");
+      setAreaF("太平區");
+      setFilterData(filterdatas);
+    };
     fetchDatas();
   }, [])
-  // 連接API取得藥局口罩數量
-  const fetchDatas = async () => {
-    const Url = 'https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json';
-    const response = await fetch(Url);
-    const result = await response.json();
-    setDatas(result.features);
-    const filterdatas = result.features.filter(data =>
-      data.properties.county === "臺中市" && data.properties.town === "太平區"
-    )
-    setCityF("臺中市");
-    setAreaF("太平區");
-    setFilterData(filterdatas);
-  };
 
+
+  //輸入關鍵字搜尋的功能
   const onhandleKeywordChange = e => {
     e.preventDefault();
     const filterDatas = datas.filter(data => data.properties.address.includes(keyWord));
@@ -40,7 +42,7 @@ function App() {
     setKeyWord('');
     setPageD(1)
   }
-
+  //縣市篩選
   const onhandleCountyChange = e => {
     console.log(e.target.value)
     if (e.target.value) {
@@ -55,7 +57,7 @@ function App() {
       return ''
     }
   }
-
+  //地區篩選
   const onhandleTownChange = e => {
     setAreaF(e.target.value);
     const filterdatas = datas.filter(data => data.properties.town === e.target.value);

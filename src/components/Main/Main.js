@@ -16,7 +16,6 @@ const noMask = new Icon({
 });
 
 function Main({ sliceData, position }) {
-
     return (
         <Map center={position} zoom={16} id="map">
             <TileLayer
