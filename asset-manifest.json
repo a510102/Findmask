@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Findmask/static/css/main.420c6ff3.chunk.css",
-    "main.js": "/Findmask/static/js/main.908bead1.chunk.js",
-    "main.js.map": "/Findmask/static/js/main.908bead1.chunk.js.map",
+    "main.js": "/Findmask/static/js/main.670bbde5.chunk.js",
+    "main.js.map": "/Findmask/static/js/main.670bbde5.chunk.js.map",
     "runtime-main.js": "/Findmask/static/js/runtime-main.ae604326.js",
     "runtime-main.js.map": "/Findmask/static/js/runtime-main.ae604326.js.map",
     "static/js/2.f45fee91.chunk.js": "/Findmask/static/js/2.f45fee91.chunk.js",
     "static/js/2.f45fee91.chunk.js.map": "/Findmask/static/js/2.f45fee91.chunk.js.map",
     "index.html": "/Findmask/index.html",
-    "precache-manifest.d3b99e48c2924d124cfdc37a9a84d74b.js": "/Findmask/precache-manifest.d3b99e48c2924d124cfdc37a9a84d74b.js",
+    "precache-manifest.74223a68dc86fa492e916ce3d812ace2.js": "/Findmask/precache-manifest.74223a68dc86fa492e916ce3d812ace2.js",
     "service-worker.js": "/Findmask/service-worker.js",
     "static/css/main.420c6ff3.chunk.css.map": "/Findmask/static/css/main.420c6ff3.chunk.css.map",
     "static/js/2.f45fee91.chunk.js.LICENSE.txt": "/Findmask/static/js/2.f45fee91.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.ae604326.js",
     "static/js/2.f45fee91.chunk.js",
     "static/css/main.420c6ff3.chunk.css",
-    "static/js/main.908bead1.chunk.js"
+    "static/js/main.670bbde5.chunk.js"
   ]
 }
