@@ -45,6 +45,9 @@ function App() {
   //縣市篩選
   const onhandleCountyChange = e => {
     if (e.target.value) {
+      if (id) {
+        setId('');
+      }
       setCityF(e.target.value);
       const filterDatas = datas.filter(data =>
         data.properties.county === e.target.value
@@ -58,6 +61,9 @@ function App() {
   }
   //地區篩選
   const onhandleTownChange = e => {
+    if (id) {
+      setId('');
+    }
     setAreaF(e.target.value);
     const filterdatas = datas.filter(data => data.properties.town === e.target.value);
     setFilterData(filterdatas);
